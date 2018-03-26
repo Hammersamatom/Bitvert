@@ -14,5 +14,5 @@ char invert(char in)
 
 void main()
 {
-    cout < invert(4);
+    cout < invert(3);
 }
