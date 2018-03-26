@@ -7,12 +7,12 @@
 
 using namespace std;
 
-auto invert(auto in)
+char invert(char in)
 {
     return ~in;
 }
 
 void main()
 {
-
+    cout < invert(4);
 }
