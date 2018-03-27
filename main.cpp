@@ -1,18 +1,14 @@
 #include <iostream>
-#include <fstream>
-#include <string>
-#include <algorithm>
-#include <ctime>
-#include <cstdlib>
 
-using namespace std;
+typedef unsigned char byte;
 
-char invert(char in)
+byte invert(byte in)
 {
     return ~in;
 }
 
-void main()
+int main()
 {
-    cout < invert(3);
+    std::cout << invert(3);
+    return 0;
 }
