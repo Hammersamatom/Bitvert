@@ -2,6 +2,8 @@
 
 typedef unsigned char byte;
 
+byte temp = 3;
+
 byte invert(byte in)
 {
     return ~in;
@@ -9,6 +11,6 @@ byte invert(byte in)
 
 int main()
 {
-    std::cout << invert(3);
+    std::cout << temp << std::endl << invert(temp);
     return 0;
 }
