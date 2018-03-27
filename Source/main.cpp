@@ -5,7 +5,7 @@
 
 typedef unsigned char byte;
 
-byte temp = '1';
+byte temp = 'g';
 
 byte invert(byte in)
 {
@@ -14,7 +14,8 @@ byte invert(byte in)
 
 int main()
 {
-    std::cout << temp         << ' ' << std::bitset<8>(temp).to_string()         << std::endl; 
+	//std::cin  >> temp;
+    //std::cout << temp         << ' ' << std::bitset<8>(temp).to_string()         << std::endl; 
     std::cout << invert(temp) << ' ' << std::bitset<8>(invert(temp)).to_string() << std::endl; 
     return 0;
 }
