@@ -26,6 +26,7 @@
             "type": "shell",
             "command": "g++",
             "args": [
+                "-I/Projects/C++/Libraries",
                 "-Wall",
                 "${file}",
                 "-o",
