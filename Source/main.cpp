@@ -16,7 +16,8 @@ int main(int argc, char *argv[])
 
 	for (int i = 0; i < txt.length(); i++)
 	{
-		myfile /* << "A " */ << bitset<8>(txt[i]).flip(); //<<  " B " << bitset<8>(txt[i]).flip() << endl;
+		string x = bitset<8>(txt[i]).flip().to_string();
+		myfile /* << "A " */ << std::strtol(x, nullptr, 2); //<<  " B " << bitset<8>(txt[i]).flip() << endl;
 	}
 
 	myfile.close();
