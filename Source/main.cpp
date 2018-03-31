@@ -1,29 +1,25 @@
 #include <iostream>
-#include <cstdlib> // for exit()
-#include <cstring>
+#include <cstdlib>
+#include <cstring>// for exit()
+#include <string>
+#include <fstream>
 #include <bitset>
-#include <boost/dynamic_bitset.hpp>
+//#include <boost/dynamic_bitset.hpp>
 
 using namespace std;
 
-const string temp = "";
-
 int main(int argc, char *argv[])
 {
+	ofstream myfile("example.txt");
 
+	string txt(argv[1]);
 
-    if (argc == 1)
-        printf("Usage: %s \n", argv[0]);
+	for (int i = 0; i < txt.length(); i++)
+	{
+		myfile /* << "A " */ << bitset<8>(txt[i]).flip(); //<<  " B " << bitset<8>(txt[i]).flip() << endl;
+	}
 
-    const bitset<64> foo(string (argv[1]));
-    //const boost::dynamic_bitset<> foo(8, argv[1]);
-
-    cout << string(argv[1]) << endl;
-
-    cout << "ARGC: " << argc << "\n";
-    printf("Length o/ ARGV[1]: %lu \n", strlen(argv[1]));
-    printf("ARGV[1]: %s \n", argv[1]);
-    //cout << "ARGV[1] Bits: " << foo <<endl;
+	myfile.close();
 
     return 0;
 }
