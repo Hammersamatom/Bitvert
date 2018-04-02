@@ -10,17 +10,35 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
-	ofstream myfile("example.txt");
-
-	string txt(argv[1]);
-
-	for (int i = 0; i < txt.length(); i++)
+	if (argv[1] != NULL)
 	{
-		string x = bitset<8>(txt[i]).flip().to_string();
-		myfile /* << "A " */ << std::strtol(x, nullptr, 2); //<<  " B " << bitset<8>(txt[i]).flip() << endl;
+		ifstream file(argv[1], ios::in | ios::binary);
+
+		if (file.is_open())
+		{
+			file.seekg(0, file.end);
+			int length = file.tellg();
+			file.seekg(0, file.beg);
+			
+			//cout << length << " bytes" << endl;
+
+			char * buffer = new char [length];
+
+			file.read(buffer,length);
+
+
+			for (int i = 0; i < length; i++)
+			{
+				string x = bitset<8>(buffer[i]).to_string();
+				cout << static_cast<char>(bitset<8>(x).to_ulong() + 64);
+				//cout << x << endl;
+			}
+		}
+		else
+		{
+			cout << "Unable to open file";
+		}
 	}
 
-	myfile.close();
-
-    return 0;
+	return 0;
 }
