@@ -27,10 +27,10 @@ int main(int argc, char *argv[])
 			file.read(buffer,length);
 
 
-			for (int i = 0; i < length; i++)
+			for (int i = length; i > 0; i--)
 			{
-				string x = bitset<8>(buffer[i]).to_string();
-				cout << static_cast<char>(bitset<8>(x).to_ulong() + 64);
+				string x = bitset<8>(buffer[i-1]).flip().to_string();
+				cout << static_cast<char>(bitset<8>(x).to_ulong());
 				//cout << x << endl;
 			}
 		}
