@@ -8,30 +8,71 @@
 
 using namespace std;
 
+
+bool count(string in, string what)
+{
+	int count = 0;
+	string::size_type pos = 0;
+
+	while ((pos = in.find(what, pos)) != string::npos)
+	{
+		count++;
+		pos += what.length();
+	}
+	
+	
+	if (count >= 1)
+		return true;
+	else
+		return false;
+}
+
+
+
+
+
 int main(int argc, char *argv[])
 {
 	if (argv[1] != NULL)
 	{
-		ifstream file(argv[1], ios::in | ios::binary);
+		string outFileName;
+		string inFileName = argv[1];
 
-		if (file.is_open())
+		if (argv[2] != NULL)
 		{
-			file.seekg(0, file.end);
-			int length = file.tellg();
-			file.seekg(0, file.beg);
+			outFileName = argv[2];
+		}
+
+		if (argv[2] == NULL)
+		{
+			if (count(inFileName, ".inv"))
+			{
+				outFileName = inFileName.substr(0, inFileName.length() - 4);
+			}
+			else
+			{
+				outFileName = string(argv[1]) + ".inv";
+			}
+		}
+
+		ifstream inFile(inFileName, ios::in | ios::binary);
+
+		if (inFile.is_open())
+		{
+			ofstream outFile(outFileName, ios::out);
 			
-			//cout << length << " bytes" << endl;
+			inFile.seekg(0, inFile.end);
+			int length = inFile.tellg();
+			inFile.seekg(0, inFile.beg);
 
 			char * buffer = new char [length];
 
-			file.read(buffer,length);
-
+			inFile.read(buffer,length);
 
 			for (int i = length; i > 0; i--)
 			{
 				string x = bitset<8>(buffer[i-1]).flip().to_string();
-				cout << static_cast<char>(bitset<8>(x).to_ulong());
-				//cout << x << endl;
+				outFile << static_cast<char>(bitset<8>(x).to_ulong());
 			}
 		}
 		else
