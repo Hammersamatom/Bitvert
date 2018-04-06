@@ -1,15 +1,15 @@
 #include <iostream>
 #include <cstdlib>
-#include <cstring>// for exit()
+#include <cstring>
 #include <string>
 #include <fstream>
 #include <bitset>
-//#include <boost/dynamic_bitset.hpp>
+
 
 using namespace std;
 
 
-bool count(string in, string what)
+int count(string in, string what)
 {
 	int count = 0;
 	string::size_type pos = 0;
@@ -20,11 +20,7 @@ bool count(string in, string what)
 		pos += what.length();
 	}
 	
-	
-	if (count >= 1)
-		return true;
-	else
-		return false;
+	return count;
 }
 
 
@@ -45,7 +41,7 @@ int main(int argc, char *argv[])
 
 		if (argv[2] == NULL)
 		{
-			if (count(inFileName, ".inv"))
+			if (count(inFileName, ".inv") > 0)
 			{
 				outFileName = inFileName.substr(0, inFileName.length() - 4);
 			}
