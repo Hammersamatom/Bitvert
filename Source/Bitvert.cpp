@@ -65,9 +65,9 @@ int main(int argc, char *argv[])
 
 			inFile.read(buffer,length);
 
-			for (int i = length; i > 0; i--)
+			for (int i = 0; i < length; i++)
 			{
-				string x = bitset<8>(buffer[i-1]).flip().to_string();
+				string x = bitset<8>(buffer[i]).to_string();
 				outFile << static_cast<char>(bitset<8>(x).to_ulong());
 			}
 		}
