@@ -55,7 +55,7 @@ int main(int argc, char *argv[])
 
 		if (inFile.is_open())
 		{
-			ofstream outFile(outFileName, ios::out);
+			ofstream outFile(outFileName, ios::out | ios::binary);
 			
 			inFile.seekg(0, inFile.end);
 			int length = inFile.tellg();
@@ -67,7 +67,8 @@ int main(int argc, char *argv[])
 
 			for (int i = 0; i < length; i++)
 			{
-				string x = bitset<8>(buffer[i]).to_string();
+				//outFile << buffer[i];
+				string x = bitset<8>(buffer[i]).flip().to_string();
 				outFile << static_cast<char>(bitset<8>(x).to_ulong());
 			}
 		}
