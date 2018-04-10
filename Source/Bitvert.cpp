@@ -52,22 +52,28 @@ int main(int argc, char *argv[])
 			ofstream outFile(outFileName, ios::out | ios::binary);
 			
 			inFile.seekg(0, inFile.end);
-			int length = inFile.tellg();
+			size_t length = inFile.tellg();
 			inFile.seekg(0, inFile.beg);
 
 			char * buffer = new char [length];
 
 			inFile.read(buffer,length);
 
-			
-			for (int i = 0; i < length; i++)
+			cout << "Length: " << length << endl;
+			cout << "Actual: " << strlen(buffer) << endl;
+			cout << "Done read phase." << endl;
+
+			for (size_t i = 0; i < length; i++)
 			{
 				//string x = bitset<8>(buffer[i]).flip().to_string();
 				//buffer[i] = static_cast<char>(bitset<8>(x).to_ulong());
+
 				buffer[i] = static_cast<char>(bitset<8>(buffer[i]).flip().to_ulong());
 			}
 
-			for (int i = 0; i < length; i++)
+			cout << "Finished Convert phase." << endl;
+
+			for (size_t i = 0; i < length; i++)
 			{
 				outFile << buffer[i];
 			}
