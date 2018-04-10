@@ -33,6 +33,22 @@
                 "${fileBasenameNoExtension}"
             ],
             "group": "build"
+        },
+        {
+            "taskName": "Build Open CPP file w/ Optimizations",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "-I/Projects/C++/Libraries",
+                "-Os",
+                "-march=native",
+                "-flto",
+                "-Wall",
+                "${file}",
+                "-o",
+                "${fileBasenameNoExtension}"
+            ],
+            "group": "build"
         }
     ]
 }

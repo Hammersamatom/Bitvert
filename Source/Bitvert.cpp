@@ -24,9 +24,6 @@ int count(string in, string what)
 }
 
 
-
-
-
 int main(int argc, char *argv[])
 {
 	if (argv[1] != NULL)
@@ -65,12 +62,23 @@ int main(int argc, char *argv[])
 
 			inFile.read(buffer,length);
 
-			for (int i = length; i > 0; i--)
+			
+			for (int i = 0; i < length; i++)
 			{
-				//outFile << buffer[i];
-				string x = bitset<8>(buffer[i-1]).flip().to_string();
-				outFile << static_cast<char>(bitset<8>(x).to_ulong());
+				string x = bitset<8>(buffer[i]).flip().to_string();
+				buffer[i] = static_cast<char>(bitset<8>(x).to_ulong());
 			}
+
+			for (int j = 0; j < length; j++)
+			{
+				outFile << buffer[j];
+			}
+			//for (int i = length; i > 0; i--)
+			//{
+			//	//outFile << buffer[i];
+			//	string x = bitset<8>(buffer[i-1]).flip().to_string();
+			//	outFile << static_cast<char>(bitset<8>(x).to_ulong());
+			//}
 		}
 		else
 		{
