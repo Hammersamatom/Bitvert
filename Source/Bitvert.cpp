@@ -5,9 +5,7 @@
 #include <fstream>
 #include <bitset>
 
-
 using namespace std;
-
 
 int count(string in, string what)
 {
@@ -22,7 +20,6 @@ int count(string in, string what)
 	
 	return count;
 }
-
 
 int main(int argc, char *argv[])
 {
@@ -65,20 +62,15 @@ int main(int argc, char *argv[])
 			
 			for (int i = 0; i < length; i++)
 			{
-				string x = bitset<8>(buffer[i]).flip().to_string();
-				buffer[i] = static_cast<char>(bitset<8>(x).to_ulong());
+				//string x = bitset<8>(buffer[i]).flip().to_string();
+				//buffer[i] = static_cast<char>(bitset<8>(x).to_ulong());
+				buffer[i] = static_cast<char>(bitset<8>(buffer[i]).flip().to_ulong());
 			}
 
-			for (int j = 0; j < length; j++)
+			for (int i = 0; i < length; i++)
 			{
-				outFile << buffer[j];
+				outFile << buffer[i];
 			}
-			//for (int i = length; i > 0; i--)
-			//{
-			//	//outFile << buffer[i];
-			//	string x = bitset<8>(buffer[i-1]).flip().to_string();
-			//	outFile << static_cast<char>(bitset<8>(x).to_ulong());
-			//}
 		}
 		else
 		{
