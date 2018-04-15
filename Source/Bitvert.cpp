@@ -3,10 +3,16 @@
 #include <cstring>
 #include <string>
 #include <fstream>
-#include <bitset>
+//#include <bitset>
 
 using namespace std;
 
+ifstream inFile;
+ofstream outFile;
+
+
+
+// Used for finding instances of strings within other strings.
 int count(string in, string what)
 {
 	int count = 0;
@@ -17,8 +23,29 @@ int count(string in, string what)
 		count++;
 		pos += what.length();
 	}
-	
+
 	return count;
+}
+
+
+// Flips the bits of selected buffer char[] based on given length.
+void flipIt(char * buffer, size_t length)
+{
+	for (size_t i = 0; i < length; i++)
+	{
+		buffer[i] = ~buffer[i];
+		//buffer[i] = static_cast<char>(bitset<8>(buffer[i]).flip().to_ulong());
+	}
+}
+
+
+// Writes the selected buffer char[] to outFile based on given length.
+void writeOut(char * buffer, size_t length)
+{
+	for (size_t i = 0; i < length; i++)
+	{
+		outFile << buffer[i];
+	}
 }
 
 int main(int argc, char *argv[])
@@ -45,44 +72,29 @@ int main(int argc, char *argv[])
 			}
 		}
 
-		ifstream inFile(inFileName, ios::in | ios::binary);
+		inFile.open(inFileName, ios::in | ios::binary);
+		outFile.open(outFileName, ios::out | ios::binary);
 
 		if (inFile.is_open())
 		{
-			ofstream outFile(outFileName, ios::out | ios::binary);
-			
 			inFile.seekg(0, inFile.end);
-			size_t length = inFile.tellg();
+			size_t fileLength = inFile.tellg();
 			inFile.seekg(0, inFile.beg);
 
-			char * buffer = new char [length];
+			char * inBuffer = new char [fileLength];
 
-			inFile.read(buffer,length);
+			inFile.read(inBuffer,fileLength);
 
-			cout << "Length: " << length << endl;
-			cout << "Actual: " << strlen(buffer) << endl;
-			cout << "Done read phase." << endl;
+			flipIt(inBuffer, fileLength);
 
-			for (size_t i = 0; i < length; i++)
-			{
-				//string x = bitset<8>(buffer[i]).flip().to_string();
-				//buffer[i] = static_cast<char>(bitset<8>(x).to_ulong());
-
-				buffer[i] = static_cast<char>(bitset<8>(buffer[i]).flip().to_ulong());
-			}
-
-			cout << "Finished Convert phase." << endl;
-
-			for (size_t i = 0; i < length; i++)
-			{
-				outFile << buffer[i];
-			}
+			writeOut(inBuffer, fileLength);
 		}
 		else
-		{
-			cout << "Unable to open file";
+		{ 
+			printf("Unable to open file");
 		}
 	}
 
 	return 0;
 }
+
