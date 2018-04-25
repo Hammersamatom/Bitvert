@@ -28,6 +28,16 @@ int count(string in, string what)
 }
 
 
+// Does an XOR compare and writes the output to the buffer array. Doing an XOR compare with the same two inputs will yield the original input buffer.
+void xorInv(char * buffer, char * pass)
+{
+	for (size_t i = 0; i < strlen(buffer); i++)
+	{
+		buffer[i] = buffer[i] ^ pass[i%strlen(pass)];
+	}
+}
+
+
 // Flips the bits of selected buffer char[] based on given length.
 void flipIt(char * buffer, size_t length)
 {
@@ -48,7 +58,8 @@ void writeOut(char * buffer, size_t length)
 	}
 }
 
-int main(int argc, char *argv[])
+
+int main(int argc, char * argv[])
 {
 	if (argv[1] != NULL)
 	{
