@@ -1,6 +1,6 @@
 CC=g++
 CPPFLAGS=-march=native -mtune=native -Os -fno-plt -flto -fno-exceptions
-PROGNAME=bwt++
+PROGNAME=bitvert
 
 $(PROGNAME): main.o
 	$(CC) -o $(PROGNAME) main.o $(CPPFLAGS)
